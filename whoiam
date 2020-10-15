@@ -1,0 +1,5 @@
+#!/bin/sh
+user=$(aws iam get-user | jq '.User.UserName' -r)
+alias=$(aws iam list-account-aliases | jq '.AccountAliases[0]' -r)
+account=$(aws sts get-caller-identity|jq -r ".Account" -r)
+echo $user $account $alias
